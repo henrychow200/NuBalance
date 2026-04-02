@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>NuBalance Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+      .animate-in {
+        animation-duration: 500ms;
+        animation-fill-mode: both;
+      }
+      .fade-in {
+        animation-name: fadeIn;
+      }
+      .slide-in-from-bottom-4 {
+        animation-name: slideInFromBottom4;
+      }
+      .slide-in-from-bottom-20 {
+        animation-name: slideInFromBottom20;
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      @keyframes slideInFromBottom4 {
+        from { transform: translateY(1rem); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+      @keyframes slideInFromBottom20 {
+        from { transform: translateY(5rem); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+      }
+
+      /* --- 極致酷炫 Logo 動畫 --- */
+      @keyframes logo-magnetic {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-4px) rotate(1deg); }
+        75% { transform: translateY(4px) rotate(-1deg); }
+      }
+      @keyframes logo-glow-complex {
+        0%, 100% { transform: scale(1); opacity: 0.4; filter: blur(12px); }
+        50% { transform: scale(1.2); opacity: 0.7; filter: blur(18px); }
+      }
+      @keyframes heartbeat {
+        0%, 10%, 100% { transform: scale(1); filter: brightness(1); }
+        5% { transform: scale(1.15); filter: brightness(1.5); }
+        7% { transform: scale(1.05); filter: brightness(1.2); }
+      }
+      @keyframes shimmer {
+        0% { transform: translateX(-150%) skewX(-20deg); }
+        100% { transform: translateX(150%) skewX(-20deg); }
+      }
+      @keyframes particle-drift {
+        0%, 100% { transform: translate(0, 0); opacity: 0.2; }
+        50% { transform: translate(5px, -5px); opacity: 0.8; }
+      }
+
+      .animate-logo-magnetic {
+        animation: logo-magnetic 4s ease-in-out infinite;
+      }
+      .animate-logo-glow-complex {
+        animation: logo-glow-complex 3s ease-in-out infinite;
+      }
+      .animate-heartbeat {
+        animation: heartbeat 2s ease-in-out infinite;
+      }
+      .shimmer-layer {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        animation: shimmer 2.5s infinite;
+      }
+      .particle {
+        position: absolute;
+        width: 4px; height: 4px;
+        background: #22d3ee;
+        border-radius: 50%;
+        filter: blur(1px);
+        animation: particle-drift 3s infinite;
+      }
+
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+      .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>

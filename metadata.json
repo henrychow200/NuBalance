@@ -1,0 +1,7 @@
+{
+  "name": "NuBalance Pro",
+  "description": "A comprehensive nutrition and hydration tracking app with personalized targets, AI-inspired meal planning, and a digital twin avatar.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
