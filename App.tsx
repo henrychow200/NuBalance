@@ -1517,8 +1517,9 @@ export default function App() {
     setScannerResult(null);
     setSelectedPortion(null);
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
+     const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
         throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
       }
      const systemPrompt = `Analyze this food... ${langPrompt}`; // 簡化
@@ -1633,11 +1634,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
     if (!nuVisionSearchQuery.trim()) return;
     setIsNuVisionSearching(true);
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-      }
-      const ai = new GoogleGenAI({ apiKey });
+     const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
       const langPrompt = lang === 'zh' ? "Respond in Traditional Chinese." : "Respond in English.";
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite-preview",
@@ -1681,13 +1680,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
       const reader = new FileReader();
       reader.onload = async () => {
         const base64Data = (reader.result as string).split(',')[1];
-        const apiKey = process.env.GEMINI_API_KEY;
-        if (!apiKey) {
-          alert("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-          setIsNuVisionPhotoSearching(false);
-          return;
-        }
-        const ai = new GoogleGenAI({ apiKey });
+        const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
         const langPrompt = lang === 'zh' ? "Respond in Traditional Chinese." : "Respond in English.";
         const response = await ai.models.generateContent({
           model: "gemini-3.1-flash-lite-preview",
@@ -1734,11 +1729,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
     if (!exerciseSearchQuery.trim()) return;
     setIsExerciseSearching(true);
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-      }
-      const ai = new GoogleGenAI({ apiKey });
+     const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
       const langPrompt = lang === 'zh' ? "Respond in Traditional Chinese." : "Respond in English.";
       const response = await ai.models.generateContent({
         model: "gemini-3.1-flash-lite-preview",
@@ -1927,11 +1920,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
     if (nuVisionCart.length === 0) return;
     setIsNuVisionAnalyzing(true);
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-      }
-      const ai = new GoogleGenAI({ apiKey });
+     const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
       
       const selectedItems = nuVisionCart.map(id => {
         const item = nuVisionCustomItems.find(i => i.id === id) || Object.values(NUVISION_ITEMS).flat().find(i => i.id === id);
@@ -2034,11 +2025,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
 
     setIsAiSearching(true);
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-      }
-      const ai = new GoogleGenAI({ apiKey });
+     const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
       const prompt = lang === 'zh'
         ? `為食譜「${getLocalizedValue(dish.name)}」提供詳細資訊。格式：{ingredients: "食材列表", method: ["步驟1", "步驟2", ...]}。請保持簡潔。`
         : `Provide details for the recipe "${getLocalizedValue(dish.name)}". Format: {ingredients: "list of ingredients", method: ["step 1", "step 2", ...]}. Keep it concise.`;
@@ -2142,11 +2131,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
    if (!searchQuery.trim()) return;
    setIsAiSearching(true);
    try {
-     const apiKey = process.env.GEMINI_API_KEY;
-     if (!apiKey) {
-       throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-     }
-     const ai = new GoogleGenAI({ apiKey });
+    const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
      const fullQuery = refinementPrompt ? `${searchQuery} (補充細節: ${refinementDetails})` : searchQuery;
      const response = await ai.models.generateContent({
        model: 'gemini-3-flash-preview',
@@ -2185,11 +2172,9 @@ const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函�
    setChatMessages(prev => [...prev, { role: 'model', text: '' }]);
 
    try {
-     const apiKey = process.env.GEMINI_API_KEY;
-     if (!apiKey) {
-       throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-     }
-     const ai = new GoogleGenAI({ apiKey });
+    const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
+const jsonString = responseText ? responseText.replace(/
+http://googleusercontent.com/immersive_entry_chip/1
      
      const userContext = `
        User Profile:
