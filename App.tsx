@@ -1958,15 +1958,8 @@ http://googleusercontent.com/immersive_entry_chip/1
       `;
  
       const response = await ai.models.generateContent({
-        model: 'gemini-3.1-flash-lite-preview',
-        contents: contents,
-        config: { 
-          responseMimeType: 'application/json',
-          systemInstruction: systemPrompt,
-          thinkingConfig: { thinkingLevel: 'LOW' as any }
-        }
-      });
-      
+     // This sends the data through your Netlify bridge instead
+const responseText = await askGeminiBridge(contents[0].text, systemPrompt);
       const jsonString = response.text ? response.text.replace(/```json|```/g, '').trim() : "{}";
       setNuVisionResult(JSON.parse(jsonString));
     } catch (e) {
