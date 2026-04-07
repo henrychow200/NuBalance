@@ -1521,22 +1521,8 @@ export default function App() {
       if (!apiKey) {
         throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
       }
-      const ai = new GoogleGenAI({ apiKey });
-      const langPrompt = lang === 'zh' ? "Respond in Traditional Chinese. Ensure all names, descriptions, and suggestions are in Traditional Chinese." : "Respond in English. Ensure all names, descriptions, and suggestions are in English.";
-      const foodNameContext = scannerFoodName ? `The user identified this food as: "${scannerFoodName}". ` : "";
-      const response = await ai.models.generateContent({
-        model: "gemini-3.1-flash-lite-preview",
-        contents: [
-          {
-            parts: [
-              { text: `${foodNameContext}Analyze this food or food label image. ${langPrompt} Provide: 1. Name of the food. 2. Estimated calories (per 100g). 3. Macro proportions (protein, carbs, fat in grams per 100g). 4. Hidden nutrition/traps (e.g., high sodium, additives, hidden sugars, trans fats). 5. Creative AI suggestion for a healthier alternative or how to balance this meal. 6. A 'Nutrition Score' from 0-100. 7. Portion analysis: Estimate the portion size visible in the image (e.g., "Detected Portion") and provide at least 3 other common portion sizes (e.g., Small, Medium, Large) and their weights in grams. Return ONLY a JSON object with keys: name, calories, protein, carbs, fat, saturatedFat, transFat, sodium, sugar, hiddenTraps (array of strings), aiSuggestion, nutritionScore, portions (array of {label, weight, calories, protein, carbs, fat, saturatedFat, transFat, sodium, sugar, isCustomBase}). Ensure one portion is "100g" with isCustomBase: true, and one portion is the "Detected Portion" (AI 識別份量) based on the image.` },
-              { inlineData: { mimeType: "image/jpeg", data: image.split(',')[1] } }
-            ]
-          }
-        ],
-        config: { responseMimeType: "application/json" }
-      });
-      const jsonString = response.text ? response.text.replace(/```json|```/g, '').trim() : "{}";
+     const systemPrompt = `Analyze this food... ${langPrompt}`; // 簡化
+const text = await askGeminiBridge(image, systemPrompt); // 使用你的新函數
       const result = JSON.parse(jsonString);
       setScannerResult(result);
       if (result.portions && result.portions.length > 0) {
@@ -1587,11 +1573,7 @@ export default function App() {
     setShowHealthReport(true);
     setHealthReportContent('');
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
-      if (!apiKey) {
-        throw new Error("GEMINI_API_KEY is missing. Please set it in your environment variables.");
-      }
-      const ai = new GoogleGenAI({ apiKey });
+     const responseText = await askGeminiBridge(chatInput, "You are a professional nutritionist...");
       const langPrompt = lang === 'zh' ? "Respond in Traditional Chinese." : "Respond in English.";
       const dataSummary = `
         User: ${currentProfile.name}, Age: ${currentProfile.age}, Gender: ${currentProfile.gender}
