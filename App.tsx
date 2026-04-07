@@ -53,7 +53,16 @@ import {
   Bell,
   Edit2
 } from 'lucide-react';
-import { GoogleGenAI } from "@google/genai";
+async function askGeminiBridge(prompt: string, systemInstruction?: string) {
+  const response = await fetch('/.netlify/functions/gemini-bridge', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt, systemInstruction })
+  });
+  const data = await response.json();
+  if (data.error) throw new Error(data.error);
+  return data.text;
+}
 import { 
   LineChart, 
   Line, 
